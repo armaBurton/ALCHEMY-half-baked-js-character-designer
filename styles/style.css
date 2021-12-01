@@ -140,8 +140,20 @@ main {
     text-align: center;
 }
 
+#chatchphrases{
+    text-align: center;
+    font-weight: bolder;
+}
 
-
-#headPic, #middlePic{
+#headPic, #middlePic, #bottomPic{
     width: 100px;
+}
+
+#stats{
+    /* padding-left: 50px;     */
+    width: 500px;
+}
+
+.bolder{
+    font-weight: bolder;
 }

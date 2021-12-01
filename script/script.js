@@ -6,8 +6,8 @@ const bottomDropdown = document.getElementById('bottom-dropdown');
 const headEl = document.getElementById('head');
 const middleEl = document.getElementById('middle');
 const bottomEl = document.getElementById('bottom');
-const reportEl = document.getElementById('report');
-const chatchphrasesEl = document.getElementById('chatchphrases');
+// const reportEl = document.getElementById('report');
+const catchphrasesEl = document.getElementById('chatchphrases');
 const catchphraseInput = document.getElementById('catchphrase-input');
 const catchphraseButton = document.getElementById('catchphrase-button');
 const report = document.getElementById(`report`);
@@ -19,7 +19,7 @@ let headChange = 0,
     bottomChange = 0;
 
 let counterArr = [];
-let chatchPhrase = ``;
+// let chatchPhrase = ``;
 let catchPhraseArr = [];
 let headDropValue = headDropdown[0].value;
 let middleDropValue = middleDropdown[0].value;
@@ -29,15 +29,22 @@ window.addEventListener('load', () => {
     let headImg = `<img id="headPic" src="./assets/${headDropValue}-head.png" />`; 
     headEl.innerHTML = headImg;
     let headCounter = document.createElement(`p`);
-    headCounter.textContent = `You have changed the head ${headChange} times.`;
+    headCounter.innerHTML = `You have changed the head <span class="bolder">${headChange}</span> times.`;
     let middleImg = `<img id="middlePic" src="./assets/${middleDropValue}-middle.png" />`; 
     middleEl.innerHTML = middleImg;
     let middleCounter = document.createElement(`p`);
-    middleCounter.textContent = `You have changed the middle ${middleChange} times.`;
+    middleCounter.innerHTML = `You have changed the middle <span class="bolder">${middleChange}</span> times.`;
+    let bottomImg = `<img id="bottomPic" src="./assets/${bottomDropValue}-pants.png" />`; 
+    bottomEl.innerHTML = bottomImg;
+    let bottomCounter = document.createElement(`p`);
+    bottomCounter.innerHTML = `You have changed the bottom <span class="bolder">${bottomChange}</span> times.`;
     counterArr[0] = headCounter;
     counterArr[1] = middleCounter;
+    counterArr[2] = bottomCounter;
     report.append(headCounter);
     report.append(middleCounter);
+    report.append(bottomCounter);
+    catchphrasesEl.textContent = `...`;
 });
 
 headDropdown.addEventListener('change', () => {
@@ -53,7 +60,7 @@ headDropdown.addEventListener('change', () => {
 
     // update the stats to show the new count
     let headCounter = document.createElement(`p`);
-    headCounter.textContent = `You have changed the head ${headChange} times.`;
+    headCounter.innerHTML = `You have changed the head <span class="bolder">${headChange}</span> times.`;
     counterArr[0] = headCounter;
     for (let i of counterArr){
         report.appendChild(i);
@@ -64,7 +71,7 @@ headDropdown.addEventListener('change', () => {
 
 middleDropdown.addEventListener('change', () => {
     counterArr[1] = ``;
-    report.textContent =``;
+    report.textContent = ``;
     // get the value of the middle dropdown
     middleDropValue = middleDropdown.value;
     // increment the middle change count state
@@ -76,7 +83,7 @@ middleDropdown.addEventListener('change', () => {
 
     // update the stats to show the new count
     let middleCounter = document.createElement(`p`);
-    middleCounter.textContent = `You have changed the head ${middleChange} times.`;
+    middleCounter.innerHTML = `You have changed the head <span class="bolder">${middleChange}</span> times.`;
     counterArr[1] = middleCounter;
     for (let i of counterArr){
         report.appendChild(i);
@@ -85,20 +92,32 @@ middleDropdown.addEventListener('change', () => {
 
 
 bottomDropdown.addEventListener('change', () => {
+    counterArr[2] = ``;
+    report.textContent = ``;
     // get the value of the bottom dropdown
-
+    bottomDropValue = bottomDropdown.value;
     // increment the bottom change count state
-    
+    bottomChange++;
     // update the dom for the bottom
-
+    let bottomIMG = `<img id="middlePic" src="./assets/${bottomDropValue}-pants.png" />`;
+    bottomEl.innerHTML = bottomIMG;
     // update the stats to show the new count
+    let bottomCounter = document.createElement(`p`);
+    bottomCounter.innerHTML = `You have changed the head <span class="bolder">${bottomChange}</span> times.`;
+    counterArr[2] = bottomCounter;
+    for (let i of counterArr){
+        report.appendChild(i);
+    }
 });
 
 catchphraseButton.addEventListener('click', () => {
     // get the value of the catchphrase input
-    
+    let phrase = catchphraseInput.value;
     // push the new catchphrase to the catchphrase array in state
+    catchPhraseArr.push(phrase);
     // update the dom for the bottom
+    displayCatchphrases(catchPhraseArr);
+    // catchphrasesEl.innerHTML = catchPhraseArr[catchPhraseArr.length - 1];
     // clear out the form input's value so it's empty to the user
     // update the dom to show the new catchphrases (call a function to do this work)
 
@@ -109,11 +128,16 @@ function displayStats() {
     const statsString = makeStatsString(); // call this function with the correct arguments
 }
 
-function displayCatchphrases() {
+function displayCatchphrases(arr) {
     // clear out the DOM for the currently displayed catchphrases
-
+    catchphrasesEl.innerHTML = ` `;
     // loop through each catchphrase in state
     // and for each catchphrase
     // create an HTML element with the catchphrase as its text content
     // and append that HTML element to the cleared-out DOM
+    for (let a of arr){
+        let p = document.createElement(`p`);
+        p.textContent = a;
+        catchphrasesEl.append(p);
+    }
 }
