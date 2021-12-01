@@ -10,29 +10,77 @@ const reportEl = document.getElementById('report');
 const chatchphrasesEl = document.getElementById('chatchphrases');
 const catchphraseInput = document.getElementById('catchphrase-input');
 const catchphraseButton = document.getElementById('catchphrase-button');
+const report = document.getElementById(`report`);
 
 // set state for how many times the user changes the head, middle, and bottom
 // set state for all of the character's catchphrases
+let headChange = 0,
+    middleChange = 0,
+    bottomChange = 0;
+
+let counterArr = [];
+let chatchPhrase = ``;
+let catchPhraseArr = [];
+let headDropValue = headDropdown[0].value;
+let middleDropValue = middleDropdown[0].value;
+let bottomDropValue = bottomDropdown[0].value;
+
+window.addEventListener('load', () => {
+    let headImg = `<img id="headPic" src="./assets/${headDropValue}-head.png" />`; 
+    headEl.innerHTML = headImg;
+    let headCounter = document.createElement(`p`);
+    headCounter.textContent = `You have changed the head ${headChange} times.`;
+    let middleImg = `<img id="middlePic" src="./assets/${middleDropValue}-middle.png" />`; 
+    middleEl.innerHTML = middleImg;
+    let middleCounter = document.createElement(`p`);
+    middleCounter.textContent = `You have changed the middle ${middleChange} times.`;
+    counterArr[0] = headCounter;
+    counterArr[1] = middleCounter;
+    report.append(headCounter);
+    report.append(middleCounter);
+});
 
 headDropdown.addEventListener('change', () => {
+    counterArr[0] = ``;
+    report.textContent = ``;
     // get the value of the head dropdown
-
+    headDropValue = headDropdown.value;
     // increment the head change count state
-    
+    headChange++;
     // update the dom for the head
+    let headImg = `<img id="headPic" src="./assets/${headDropValue}-head.png" />`; 
+    headEl.innerHTML = headImg;
 
     // update the stats to show the new count
+    let headCounter = document.createElement(`p`);
+    headCounter.textContent = `You have changed the head ${headChange} times.`;
+    counterArr[0] = headCounter;
+    for (let i of counterArr){
+        report.appendChild(i);
+    }
+    // headCounter.textContent = ' ';
 });
 
 
 middleDropdown.addEventListener('change', () => {
+    counterArr[1] = ``;
+    report.textContent =``;
     // get the value of the middle dropdown
-
+    middleDropValue = middleDropdown.value;
     // increment the middle change count state
+    middleChange++;
     
     // update the dom for the middle
+    let middleImg = `<img id="middlePic" src="./assets/${middleDropValue}-middle.png" />`;
+    middleEl.innerHTML = middleImg;
 
     // update the stats to show the new count
+    let middleCounter = document.createElement(`p`);
+    middleCounter.textContent = `You have changed the head ${middleChange} times.`;
+    counterArr[1] = middleCounter;
+    for (let i of counterArr){
+        report.appendChild(i);
+    }
 });
 
 

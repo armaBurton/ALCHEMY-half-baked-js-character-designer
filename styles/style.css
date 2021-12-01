@@ -109,7 +109,7 @@ main {
 }
 
 .left {
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .left, .right {
@@ -138,4 +138,10 @@ main {
     font-size: 2rem;
     font-family: cursive;
     text-align: center;
+}
+
+
+
+#headPic, #middlePic{
+    width: 100px;
 }
