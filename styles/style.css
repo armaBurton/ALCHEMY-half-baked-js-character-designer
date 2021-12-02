@@ -109,7 +109,7 @@ main {
 }
 
 .left {
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .left, .right {
@@ -138,4 +138,22 @@ main {
     font-size: 2rem;
     font-family: cursive;
     text-align: center;
+}
+
+#chatchphrases{
+    text-align: center;
+    font-weight: bolder;
+}
+
+#headPic, #middlePic, #bottomPic{
+    width: 100px;
+}
+
+#stats{
+    /* padding-left: 50px;     */
+    width: 500px;
+}
+
+.bolder{
+    font-weight: bolder;
 }
