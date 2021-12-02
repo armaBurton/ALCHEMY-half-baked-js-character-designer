@@ -1,12 +1,12 @@
 // IMPORT MODULES under test here:
-import { makeStatsString } from '../utils.js';
+import { makeStatsString } from '../script/utils.js';
 
 const test = QUnit.test;
 
 test('should return a string describing the current state', (expect) => {
     //Arrange
     // Set up your arguments and expectations
-    const expected = `You clicked on the head 4 times, on the middle 5 times, and on the bottom 1 time. And everybody loves your character's catchphrases:`;
+    const expected = `451`;
     
     //Act 
     // Call the function you're testing and set the result to a const
